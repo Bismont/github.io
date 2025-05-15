@@ -133,8 +133,8 @@ $$
 
 $$
   \mathbb{E}|Y - c|
-  = \int_{y<c}(c - y)\,f(y)\,dy
-  + \int_{y>c}(y - c)\,f(y)\,dy.
+  = \int_{y<c}(c - y)\,f(y)\,dy$$
+  $$+ \int_{y>c}(y - c)\,f(y)\,dy.
 $$
 
 ## El cuantil como un problema de minimización 3
