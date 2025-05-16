@@ -102,16 +102,16 @@ jupyter: true
 
 ## Definición de cuantiles
 
-- Cuantil de orden \(\tau\) de la v.a. \(Y\):  
+- Cuantil de orden $\tau$ de la v.a. $Y$:  
   $$  
     Q_Y(\tau) = \inf\{y : F_Y(y) \ge \tau\}  
   $$
-- Para \(tau = 0.5\), se obtiene la mediana.  
+- Para $tau = 0.5$, se obtiene la mediana.  
 - Se pueden estimar otros percentiles: 10%, 25%, 90%, etc.
 
 ## El cuantil como un problema de minimización
 
-En este apartado veremos cómo los cuantiles pueden ser expresados como un problema de minimización. Es bien sabido que la media de \(Y\) es la solución al problema de minimización siguiente:
+En este apartado veremos cómo los cuantiles pueden ser expresados como un problema de minimización. Es bien sabido que la media de $Y$ es la solución al problema de minimización siguiente:
 
 $$
 \arg\min_c E[(Y - c)^2]
