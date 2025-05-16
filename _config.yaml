@@ -1,3 +1,10 @@
 jupyter:
   execute:
     execute_notebooks: auto
+
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  math_engine: mathjax
+  gfm_quirks: math
