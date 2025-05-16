@@ -103,105 +103,73 @@ jupyter: true
 ## Definición de cuantiles
 
 - Cuantil de orden $\tau$ de la v.a. $Y$:  
-  $$  
-    Q_Y(\tau) = \inf\{y : F_Y(y) \ge \tau\}  
-  $$
-- Para $tau = 0.5$, se obtiene la mediana.  
+  $$Q_Y(\tau) = \inf\{y : F_Y(y) \ge \tau\}$$
+- Para $\tau = 0.5$, se obtiene la mediana.  
 - Se pueden estimar otros percentiles: 10%, 25%, 90%, etc.
 
 ## El cuantil como un problema de minimización
 
 En este apartado veremos cómo los cuantiles pueden ser expresados como un problema de minimización. Es bien sabido que la media de $Y$ es la solución al problema de minimización siguiente:
 
-$$
-\arg\min_c E[(Y - c)^2]
-$$
+$$\arg\min_c E[(Y - c)^2]$$
 Demostraremos más adelante que si reemplazamos la función de pérdida cuadrática por la función de pérdida absoluta, se tiene que la mediana, que denotaremos por $Q_{Y}\left(\frac{1}{2}\right)$ es solución de:
 
-$$
-\arg\min_c E[|Y - c|]
-$$
+$$\arg\min_c E[|Y - c|]$$
 
 Para generalizar el hecho anterior para cualquier cuantil, definimosla función de pérdida:
-$$
-\rho_{\theta}(y) = [\theta - I(y < 0)] \cdot |y| = y(1 - \theta) I(y \leq 0) + y \theta I(y > 0)
-$$
+$$\rho_{\theta}(y) = [\theta - I(y < 0)] \cdot |y| = y(1 - \theta) I(y \leq 0) + y \theta I(y > 0)$$
 Así, como demostraremos más adelnate, el cuantíl $Q_{Y}(\theta)$ es solución de la siguiente función de minimización 
 
-$$
-\arg\min_c E[\rho_{\theta}(Y - c)]
-$$
+$$\arg\min_c E[\rho_{\theta}(Y - c)]$$
 Ahora demostraremos que la mediana minimiza la esperanza de la función de pérdida del valor absoluto, esto para el caso en el que $Y$ es una v.a. con densidad $f(y)$. Así, nótese que,
 
 
 
-$$
-\begin{align}
+$$\begin{align}
   \mathbb{E}[|Y-c|] &= \int_{y \in \mathbb{R}}|y-c|f(y)dy\\
   &= \int_{y<c}(c-y)f(y)dy + \int_{y>c}(y-c)f(y)dy
-\end{align}
-$$
+\end{align}$$
 Analizando la integral de la izquierda de la última expresión se tiene que:
 
-$$
-\int_{y<c}(c-y)f(y)dy = c \int_{-\infty}^{c} f(y)dy - \int_{-\infty}^{c} y f(y)dy
-$$
+$$\int_{y<c}(c-y)f(y)dy = c \int_{-\infty}^{c} f(y)dy - \int_{-\infty}^{c} y f(y)dy$$
 Dado que el valor absoluto es una función convexa entonces derivando respecto a $c$ e igualando a 0, dbeemos ser capaces de encontrar el punto en el que se encuentra el mínimo. Así, 
 
-$$
-\begin{align*}
+$$\begin{align*}
         \frac{\partial}{\partial c}\left[\int_{y<c}(c-y)f(y)dy\right] &= cf(c)+F(c)-cf(c)\\
         &= F(c)
-    \end{align*}
-$$
+    \end{align*}$$
 
 De forma similar:
 
-$$
-\begin{equation*}
+$$\begin{equation*}
         \frac{\partial}{\partial c}\left[\int_{y<c}(c-y)f(y)dy\right] = F(c) -1
-    \end{equation*}
-$$
+    \end{equation*}$$
 
 Así, juntando los dos resultados anteriores, se tiene que 
 
 
-$$
-\frac{\partial}{\partial c}\mathbb{E}[|Y-c|] = 2F(c)-1
-$$
+$$\frac{\partial}{\partial c}\mathbb{E}[|Y-c|] = 2F(c)-1$$
 
 por lo que 
 
-$$
-\frac{\partial }{\partial c}\mathbb{E}[|Y-c|] = 0 \Longleftrightarrow F(c) = \frac{1}{2} \Rightarrow c = Q_{Y}(0.5)
-$$
+$$\frac{\partial }{\partial c}\mathbb{E}[|Y-c|] = 0 \Longleftrightarrow F(c) = \frac{1}{2} \Rightarrow c = Q_{Y}(0.5)$$
 
 Para el caso general, dónde la función de pérdida es $\rho_{\theta}$ se tiene que :
 
-$$
-\mathbb{E}[\rho_{\theta}(Y-c)] = (1-	\theta)\int_{y<c}(c-y)f(y)dy + 	\theta\int_{y>c}(y-c)f(y)dy
-$$
+$$\mathbb{E}[\rho_{\theta}(Y-c)] = (1-	\theta)\int_{y<c}(c-y)f(y)dy + 	\theta\int_{y>c}(y-c)f(y)dy$$
 
 y podemos ver que es prácticamente la misma expresión a la que llegamos en el caso de la mediana excepto que estas integrales están multiplicadas por unas constantes. Así, bajo el mismo procedimiento enterior, se tiene que 
-$$
-\frac{\partial }{\partial c}\mathbb{E}[\rho_{\theta}(Y-c)] = (1-	\theta)F(c) + \theta(F(c)-1) = F(c) - \theta
-$$
+$$\frac{\partial }{\partial c}\mathbb{E}[\rho_{\theta}(Y-c)] = (1-	\theta)F(c) + \theta(F(c)-1) = F(c) - \theta$$
 
 por lo tanto, dado que $\rho_{\theta}$ es una función convexa entonces alcanza su mínimo en dódne la primera derivada se hace 0 y por lo tanto, 
 
-$$
-\frac{\partial }{\partial c}\mathbb{E}[\rho_{	\theta}(Y-c)] = 0 \Longleftrightarrow F(c) = \theta \Rightarrow Q_{Y}(\theta) = c
-$$
+$$\frac{\partial }{\partial c}\mathbb{E}[\rho_{	\theta}(Y-c)] = 0 \Longleftrightarrow F(c) = \theta \Rightarrow Q_{Y}(\theta) = c$$
 Si ahora en lugar de usar la función de densidad de $Y$ usamos la función de distribución  empírica de $Y$ que esta dada por:
 
-$$
-F_n(x) = \frac{1}{n} \sum_{k=1}^{n} 1_{\{Y_k \leq x\}}
-$$
+$$F_n(x) = \frac{1}{n} \sum_{k=1}^{n} 1_{\{Y_k \leq x\}}$$
 dónde $\{Y_{i}\}_{i\geq 1}$ es una sucesión de v.a. tal que las v.a. $Y_{i}$ se distribuye igual que $Y$ para todo $i\geq 1$ entonces el problema de minimización se convierte en 
 
-$$
-\min_{c} \frac{1}{n} \sum_{k=1}^{n} \rho_{\theta}(y_k - c)
-$$
+$$\min_{c} \frac{1}{n} \sum_{k=1}^{n} \rho_{\theta}(y_k - c)$$
 
 aquí, $y_i$ son las observaciones de $Y_i$. El valor de $c$ que minimiza esta función es el cuantil $\theta$ muestral (ya que las observaciones de las v.a. $Y_{i}$ ya fueron observadas).
 
@@ -221,9 +189,7 @@ La programación lineal es una herramienta sumamente flexible, ampliamente aplic
 La programación lineal es una rama de la matemática que se ocupa de la asignación eficiente de recursos limitados a actividades conocidas con el objetivo de alcanzar una meta deseada, como minimizar costos o maximizar beneficios.
 
 Las variables:
-$$
-x_i \geq 0 \quad i=1, \ldots, n,
-$$
+$$x_i \geq 0 \quad i=1, \ldots, n,$$
 cuyos valores deben decidirse de manera óptima, se denominan variables de decisión.
 
 En un programa lineal general, el objetivo es encontrar un vector $\mathbf{x}^* \in \mathbb{R}_{+}^n$ que minimice o maximice, el valor de una función lineal llamada función objetivo, dada entre todos los vectores $\mathbf{x} \in \mathbb{R}_{+}^n$ que satisfacen un sistema dado de ecuaciones e inecuaciones lineales llamado sistema de restricciones. El papel de la linealidad es, por tanto, doble:
@@ -235,51 +201,37 @@ La linealidad de algunos modelos puede justificarse sobre la base de las propied
 Para recapitular, un problema típico de programación lineal satisface las siguientes condiciones:
 
 - Las $n$ variables de decisión son no negativas:
-$$
-x_i \geq 0 \quad i=1, \ldots, n .
-$$
+$$x_i \geq 0 \quad i=1, \ldots, n .$$
 
 Geométricamente, esto restringe las soluciones a $\mathbb{R}_{+}^n$.
 En caso de que el problema esté caracterizado por variables sin restricción de signo, es decir, variables que pueden ser positivas, negativas o cero, se puede utilizar un truco simple para restringirlas a variables no negativas, introduciendo dos variables no negativas $[x]^{+}$ y $[-x]^{+}$ y convirtiendo cualquier variable de decisión no restringida como la diferencia entre dos variables no negativas sin cambiar el problema de optimización:
-$$
-\begin{aligned}
+$$\begin{aligned}
 & x=[x]^{+}-[-x]^{+} \\
 & {[x]^{+} \geq 0} \\
 & {[-x]^{+} \geq 0 .}
-\end{aligned}
-$$
+\end{aligned}$$
 
 Para $x>0$, se fija $[x]^{+}=x$ y $[-x]^{+}=0$, mientras que para $x<0$ se fija $[-x]^{+}=-x$ y $[x]^{+}=0$.
 Si $x=0$, entonces $[x]^{+}=[-x]^{+}=0$.
 
 -  La función objetivo, es una función lineal de las mismas variables:
-$$
-z=\sum_{i=1}^n c_i x_i=\mathbf{c x} .
-$$
+$$z=\sum_{i=1}^n c_i x_i=\mathbf{c x} .$$
 
 La conversión de un problema de minimización a uno de maximización es trivial: maximizar $z$ es equivalente a minimizar $-z$.
 
 - Las $m$ restricciones que regulan el proceso pueden expresarse como ecuaciones lineales o desigualdades lineales escritas en términos de las variables de decisión. Una restricción genérica consiste en una igualdad o desigualdad asociada a combinaciones lineales de las variables de decisión:
-$$
-a_1 x_1+\cdots+a_i x_i+\cdots+a_n x_n\left\{\begin{array}{l}
+$$a_1 x_1+\cdots+a_i x_i+\cdots+a_n x_n\left\{\begin{array}{l}
 \leq \\
 = \\
 \geq
-\end{array}\right\} b .
-$$
+\end{array}\right\} b .$$
 
 Se pueden pasar las restricciones de una forma a otra. Por ejemplo, una restricción de desigualdad:
-$$
-a_1 x_1+\cdots+a_i x_i+\cdots+a_n x_n \leq b
-$$
+$$a_1 x_1+\cdots+a_i x_i+\cdots+a_n x_n \leq b$$
 puede convertirse en una restricción de mayor o igual simplemente multiplicándola por $-1$. En cambio, puede convertirse en una restricción de igualdad añadiendo una variable no negativa (variable de holgura),
-$$
-a_1 x_1+\cdots+a_i x_i+\cdots+a_n x_n+w=b, \quad w \geq 0 .
-$$
+$$a_1 x_1+\cdots+a_i x_i+\cdots+a_n x_n+w=b, \quad w \geq 0 .$$
 Por otro lado, una restricción de igualdad,
-$$
-a_1 x_1+\cdots+a_i x_i+\cdots+a_n x_n=b
-$$
+$$a_1 x_1+\cdots+a_i x_i+\cdots+a_n x_n=b$$
 puede convertirse en una forma de desigualdad mediante la introducción de dos restricciones de desigualdad:
 $$
 \begin{aligned}
@@ -294,15 +246,11 @@ Finalmente, vale la pena recordar que, desde un punto de vista geométrico, una 
 Al combinar todas las desigualdades, el conjunto de vectores que satisfacen las restricciones, conjunto factible, es entonces la intersección de todos los semiespacios involucrados, los $n$ semiespacios impuestos por la no negatividad de las variables de decisión y los $m$ semiespacios impuestos por las $m$ restricciones que regulan el proceso.
 
 Consideremos un problema de programación lineal con $n$ incógnitas (variables de decisión) y $m$ restricciones. La formulación matricial del problema es la siguiente (forma estándar),
-```{=tex}
-\begin{equation}\label{eq21}
-\begin{array}{ll}
+$$\begin{array}{ll}
 \operatorname{minimize} & \mathbf{c x} \\
 \text { subject to } & \mathbf{A x} \leq \mathbf{b} \\
 & \mathbf{x} \geq \mathbf{0} .
-\end{array}
-\end{equation}
-```
+\end{array}$$
 La forma estándar plantea las desigualdades como de tipo menor o igual y requiere la no negatividad de las variables de decisión.  
     - El vector $\mathbf{c}_{[n]}$ contiene los costos asociados a las variables de decisión.  
     - La matriz $\mathbf{A}_{[m \times n]}$ y el vector $\mathbf{b}_{[m]}$ permiten considerar las $m$ restricciones.  
@@ -315,34 +263,26 @@ Un problema que no tiene solución factible se llama no factible. Un problema co
 
  Asociado con cada programación lineal está su programa dual.
 Partiendo del problema lineal introducido anteriormente, también llamado el problema primal, su formulación dual comienza con la misma $\mathbf{A}$ y $\mathbf{b}$ pero invierte todo lo demás. El vector de costo primal $\mathbf{c}$ y el vector de restricciones $\mathbf{b}$ se intercambian con el vector de ganancia dual $\mathbf{b}$ y $\mathbf{c}$ se usa como el vector de restricciones. El desconocido dual (variable de decisión) $\mathbf{y}$ es ahora un vector con $m$ componentes, siendo las $n$ restricciones representadas por $\mathbf{A^{\top}y} \geq \mathbf{c}$. Dado el problema de programación lineal primal, el programa lineal dual asociado es,
-$$
-\begin{array}{ll}
+$$\begin{array}{ll}
 \text{maximizar} & \mathbf{b^{\top} y} \\
 \text{sujeto a} & \mathbf{A^{\top}y} \geq \mathbf{c} \\
 & \mathbf{y} \geq \mathbf{0} .
-\end{array}
-$$
+\end{array}$$
 
 Los programas lineales vienen en pares primal/dual. Resulta que cada solución factible para uno de estos dos programas lineales da un límite sobre el valor objetivo óptimo para el otro.   
 - El problema dual proporciona límites superiores para el problema primal (teorema de dualidad débil):
-$$
-\mathbf{c x} \leq \mathbf{b y} ;
-$$
+$$\mathbf{c x} \leq \mathbf{b y} ;$$
 - Si el problema primal tiene una solución óptima, entonces el dual también tiene una solución óptima (teorema de dualidad fuerte),
-$$
-c^* = \mathbf{b y}^* .
-$$
+$$c^* = \mathbf{b y}^* .$$
 Cabe mencionar que a veces es más fácil resolver el programa lineal desde la formulación dual, en lugar de atacar la formulación primal.
 
 
 ### La formulación de programación lineal para el problema QR
 Para poder abordar el problema de la regresión cuantilica como un problema de programación lineal, se necesita llevar la función objetivo y el conjunto de restricciónes a una forma lineal. Para esto observe que el problema general se puede plantear como,
-$$
-\begin{aligned}
+$$\begin{aligned}
 \min _{\boldsymbol{\beta}(\theta)}& \sum_{i=1}^n \rho_\theta\left(y_i-\mathbf{x}_i^{\top} \boldsymbol{\beta}(\theta)\right) \\
 s.a&\quad \boldsymbol{y}=X\boldsymbol{\beta}(\theta)+\boldsymbol{\varepsilon}.
-\end{aligned}
-$$
+\end{aligned}$$
 Para llevar este problema a uno que se pueda resolver en programación lineal, observe que la función objetivo está dada por, 
 $$\rho_\theta\left(y_i-\boldsymbol{x}_i^{\top} \boldsymbol{\beta}(\theta)\right)= \begin{cases}\theta\left|y_i-\boldsymbol{x}_i^{\top} \boldsymbol{\beta}(\theta)\right| & \text { si } y_i-\boldsymbol{x}_i^{\top} \boldsymbol{\beta}(\theta)>0 \\ (1-\theta)\left|y_i-\boldsymbol{x}_i^{\top} \boldsymbol{\beta}(\theta)\right| & \text { si } y_i-\boldsymbol{x}_i^{\top} \boldsymbol{\beta}(\theta) \leq 0.\end{cases}$$
 Considere las siguientes funciones funciones, 
@@ -356,8 +296,7 @@ $$
 Note que $\mathbf{s}_1$ y $\mathbf{s}_2$ son dos vectores de dimensión n, donde $\mathbf{s}_1$ en sus entradas solo tiene los errores positivos y donde los errores son negativos tiene cero, mientras que  $\mathbf{s}_2$ en sus entradas tiene el valor absoluto de los errores negativos y donde son negativos tienen cero. Observe que el problema original se puede reescribir de la siguiente manera, 
 $$\begin{aligned} & \min _{\beta(\theta)} \sum_{i=1}^n \theta s_{1 i}+(1-\theta) s_{2 i} \\  \text { s.a } \boldsymbol{y} &=X \boldsymbol{\beta}(\theta)+\boldsymbol{s}_1-\boldsymbol{s}_2 \\ &=X [\boldsymbol{\beta}(\theta)]_{+}-X [\boldsymbol{\beta}(\theta)]_{-}+I \boldsymbol{s}_1-I \boldsymbol{s}_2.\end{aligned}$$
 Si se define a,
-$$
-\boldsymbol{\psi} = \begin{pmatrix}
+$$\boldsymbol{\psi} = \begin{pmatrix}
 [\boldsymbol{\beta}(\theta)]_{+} \\ 
 [\boldsymbol{\beta}(\theta)]_{-} \\ 
 \mathbf{s}_1 \\ 
@@ -369,33 +308,26 @@ $$
 \theta \mathbf{1}_n \\ 
 (1-\theta) \mathbf{1}_n
 \end{pmatrix}, \quad 
-\mathbf{B} = \bigl[\,\mathbf{X},  -\mathbf{X},  \mathbf{I} , -\mathbf{I}\,\bigr],
-$$
+\mathbf{B} = \bigl[\,\mathbf{X},  -\mathbf{X},  \mathbf{I} , -\mathbf{I}\,\bigr],$$
  el problema primal se puede reescribir como, 
-$$
-\begin{aligned}
+$$\begin{aligned}
 \min & _\psi\quad \mathbf{d}^{\top} \psi \\  \text { sujeto a }&  \quad\mathbf{B} \psi=\mathbf{y}.
-\end{aligned}
-$$
+\end{aligned}$$
 De la expresión primal anterior se tiene que el problema dual está dado por, 
 $$\begin{array}{ll}\max_{\boldsymbol{z}} & \boldsymbol{y}^{\top} \boldsymbol{z} \\ \text { s.a } & B^{\top} \boldsymbol{z} \leq 0 .\end{array}$$
   Observe que si se analiza el producto $B^{\top} \boldsymbol{z},$
 $$B^{\top} \boldsymbol{z}=\left[\begin{array}{c}X^{\top} \boldsymbol{z} \\ -X^{\top} \boldsymbol{z} \\ I \boldsymbol{z} \\ -I \boldsymbol{z}\end{array}\right] \leq\left[\begin{array}{c}\boldsymbol{0}_p \\ \boldsymbol{0}_p \\ \theta \boldsymbol{1}_n \\ (1-\theta) \boldsymbol{1}_n\end{array}\right] \Rightarrow \begin{aligned} & X^{\top} \boldsymbol{z}=0 \\ & \boldsymbol{z} \in[\theta-1, \theta]^n.\end{aligned}$$
 Esto debido a que en las dos primeras restricciones se tiene,
-$$
-\begin{aligned}
+$$\begin{aligned}
 X^{\top} \boldsymbol{z} &\leq \boldsymbol{0}_p \\
 X^{\top} \boldsymbol{z} &\geq \boldsymbol{0}_p 
-\end{aligned}
-$$
+\end{aligned}$$
 lo que equivale a la restricción de igualdad. Mientras que las dos ultimas restricciones,
 
-$$
-\begin{aligned}
+$$\begin{aligned}
 I \boldsymbol{z} &\leq \theta \boldsymbol{1}_n  \\
 I \boldsymbol{z} &\geq (\theta-1) \boldsymbol{1}_n, 
-\end{aligned}
-$$
+\end{aligned}$$
 lo que nos indica que cada entrada del vector $\boldsymbol{z}$ debe ser menor o igual a $\theta$ y que cada entrada del vector $\boldsymbol{z}$ debe ser mayor o igual a 
 $(\theta-1).$  Sea $\boldsymbol{z}_0 \in [0,1]^n,$ observe que, 
 $$\boldsymbol{z}_0 \in[0,1]^n \Rightarrow \boldsymbol{z}=\boldsymbol{z}_0+(\theta-1) \boldsymbol{1}_n.$$
@@ -413,68 +345,47 @@ $$
 ## La condición de subgradiente
 A continuación se introducirá la condición básica de optimalidad que caracteriza los cuantiles de regresión. Se ha visto que podemos restringir nuestra atención a soluciones candidatas de la forma básica,
 
-$$
-b(h)=X(h)^{-1} y(h)
-$$
+$$b(h)=X(h)^{-1} y(h)$$
 
 Para algunos $h$, $X(h)$ puede ser singular. Esto no debe preocuparnos, podemos restringirnos a $b(h)$ con $h \in \mathcal{H}^{*}=\{h \in \mathcal{H}:|X(h)| \neq 0\}$. También hemos visto que nuestra condición de optimalidad implica verificar que las derivadas direccionales sean no negativas en todas direcciones. Para verificar esto en $b(h)$, debemos considerar,
 
-$$
-\nabla R(b(h), w)=-\sum_{i=1}^{n} \psi_{\tau}^{*}\left(y_{i}-x_{i}^{\prime} b(h),-x_{i}^{\prime} w\right) x_{i}^{\prime} w,
-$$
-con $$
-\psi^{*}(u, v)= \begin{cases}\tau-I(u<0) & \text{ si } u \neq 0 \\ \tau-I(v<0) & \text{ si } u=0\end{cases}.
-$$
+$$\nabla R(b(h), w)=-\sum_{i=1}^{n} \psi_{\tau}^{*}\left(y_{i}-x_{i}^{\prime} b(h),-x_{i}^{\prime} w\right) x_{i}^{\prime} w,$$
+con 
+$$\psi^{*}(u, v)= \begin{cases}\tau-I(u<0) & \text{ si } u \neq 0 \\ \tau-I(v<0) & \text{ si } u=0\end{cases}.$$
 Reparametrizando las direcciones para que $v=X(h) w$, tenemos optimalidad si y solo si,
 
-$$
-0 \leq-\sum_{i=1}^{n} \psi_{\tau}^{*}\left(y_{i}-x_{i}^{\prime} b(h),-x_{i} X(h)^{-1} v\right) x_{i}^{\prime} X(h)^{-1} v
-$$
+$$0 \leq-\sum_{i=1}^{n} \psi_{\tau}^{*}\left(y_{i}-x_{i}^{\prime} b(h),-x_{i} X(h)^{-1} v\right) x_{i}^{\prime} X(h)^{-1} v$$
 
 para todo $v \in \mathbb{R}^{p}$. Notemos que para $i \in h$, tenemos $e_{i}^{\prime}=x_{i}^{\prime} X(h)^{-1}$, el $i$-ésimo vector unitario base de $\mathbb{R}^{p}$, por lo que podemos reescribir esto como:
 
-$$
-0 \leq-\sum_{i \in h} \psi_{\tau}^{*}\left(0, v_{i}\right) v_{i}-\xi^{\prime} v=-\sum_{i \in h}\left(\tau-I\left(v_{i}<0\right)\right) v_{i}-\xi^{\prime} v
-$$
+$$0 \leq-\sum_{i \in h} \psi_{\tau}^{*}\left(0, v_{i}\right) v_{i}-\xi^{\prime} v=-\sum_{i \in h}\left(\tau-I\left(v_{i}<0\right)\right) v_{i}-\xi^{\prime} v$$
 
 donde,
 
-$$
-\xi\left(v_{i}\right)=\sum_{i \in \bar{h}} \psi_{\tau}^{*}\left(y_{i}-x_{i} b(h),-x_{i} X(h)^{-1} v_{i}\right) x_{i}^{\prime} X(h)^{-1}
-$$
+$$\xi\left(v_{i}\right)=\sum_{i \in \bar{h}} \psi_{\tau}^{*}\left(y_{i}-x_{i} b(h),-x_{i} X(h)^{-1} v_{i}\right) x_{i}^{\prime} X(h)^{-1}$$
 
 Finalmente, notemos que el espacio de "direcciones" $v \in \mathbb{R}^{p}$ está generado por $v= \pm e_{k}, k=1, \ldots, p$. Es decir, la condición de derivada direccional se cumple para todo $v \in \mathbb{R}^{p}$ si y solo si se cumple para las $2p$ direcciones canónicas $\{ \pm e_{i}: i=1, \ldots, p\}$. Así, para $v=e_{i}$ tenemos las $p$-desigualdades:
 
-$$
-0<-(\tau-1)+\xi_{i}\left(e_{i}\right) \quad i=1, \ldots, p
-$$
+$$0<-(\tau-1)+\xi_{i}\left(e_{i}\right) \quad i=1, \ldots, p$$
 
 mientras que para $v=-e_{i}$ tenemos:
 
-$$
-0<\tau-\xi_{i}\left(-e_{i}\right) \quad i=1, \ldots, p
-$$
+$$0<\tau-\xi_{i}\left(-e_{i}\right) \quad i=1, \ldots, p$$
 
 Combinando estas desigualdades, tenemos nuestra condición de optimalidad en toda su generalidad. Si ninguno de los residuos de las observaciones no básicas ($i \in \bar{h}$) es cero (como sería el caso con probabilidad uno si las $y$ tienen una densidad respecto a la medida de Lebesgue), entonces la dependencia de $\xi$ en $v$ desaparece y podemos combinar los dos conjuntos de desigualdades para obtener:
 
-$$
-(\tau-1) 1_{p} \leq \xi_{h} \leq \tau 1_{p}
-$$
+$$(\tau-1) 1_{p} \leq \xi_{h} \leq \tau 1_{p}$$
 Resumiendo la discusión anterior, podemos reformular el Teorema de Koenker y Bassett (1978) con ayuda de la siguiente definición introducida por Rousseeuw y Leroy (1987).
 
 **DEFINICIÓN:** Diremos que las observaciones de regresión $(y, X)$ están en posición general si cualquier subconjunto de $p$ de ellas produce un ajuste exacto único, es decir, para todo $h \in \mathcal{H}^{*}$,
 
-$$
-y_{i}-x_{i} b(h) \neq 0 \quad \text{para todo } i \notin h.
-$$
+$$y_{i}-x_{i} b(h) \neq 0 \quad \text{para todo } i \notin h.$$
 
 Nótese que si las $y_{i}$ tienen densidad respecto a la medida de Lebesgue, entonces las observaciones $(y, X)$ estarán en posición general con probabilidad uno.
 
 **TEOREMA.** Si $(y, X)$ están en posición general, entonces existe una solución al problema de regresión cuantílica de la forma $b(h)=X(h)^{-1} y(h)$ si y solo si para algún $h \in \mathcal{H}^{*}$ se cumple
 
-$$
-(\tau-1) 1_{p} \leq \xi_{h} \leq \tau 1_{p} \tag{2.3.1}
-$$
+$$(\tau-1) 1_{p} \leq \xi_{h} \leq \tau 1_{p} \tag{2.3.1}$$
 
 donde $\xi_{h}=\sum_{i \in \bar{h}} \psi_{\tau}\left(y_{i}-x_{i}^{\prime} b(h)\right) x_{i}^{\prime} X(h)^{-1}$ y $\psi_{\tau}=\tau-I(u<0)$. Además, $b(h)$ es la solución única si y solo si las desigualdades son estrictas; de lo contrario, el conjunto solución es la envolvente convexa de varias soluciones de la forma $b(h)$.
 
@@ -492,9 +403,7 @@ El uso de este tipo de intervalo de predicción garantiza un nivel de cobertura 
 ## Una distribución teorica para una muestra finita
 Supongamos que $Y_{1}, \ldots, Y_{n}$ son variables aleatorias independientes e idénticamente distribuidas (iid) con función de distribución común $F$ y asumamos que $F$ tiene una densidad continua $f$ en una vecindad de $\xi_{\tau}=F^{-1}(\tau)$ con $f\left(\xi_{\tau}\right)>0$. La función objetivo del $\tau$-ésimo cuantil muestral
 
-$$
-\hat{\xi}_{\tau} \equiv \inf _{\xi}\left\{\xi \in \mathbb{R} \mid \sum \rho_{\tau}\left(Y_{i}-\xi\right)=\min \right\}
-$$
+$$\hat{\xi}_{\tau} \equiv \inf _{\xi}\left\{\xi \in \mathbb{R} \mid \sum \rho_{\tau}\left(Y_{i}-\xi\right)=\min \right\}$$
 
 Observe que,
     $$\rho_{\tau}(y) = [\tau-I(y<0)]|y| = |y|(1-\theta)I(y\leq 0) + |y|\theta I(y>0),$$
@@ -506,58 +415,42 @@ de este modo, la derivada respecto a $\xi$ se puede escribir como,
 $$\frac{\partial\rho_\tau^\prime(Y_i-\xi)}{\partial \xi}=-\tau I_{Y_i-\xi>0}+(1-\tau)I_{Y_i-\xi<0}=I_{Y_i<\xi}-\tau  $$
 Se sigue, que el gradiente tiene la forma,
 
-$$
-g_{n}(\xi)=\sum_{i=1}^{n}\left(I\left(Y_{i}<\xi\right)-\tau\right)
-$$
+$$g_{n}(\xi)=\sum_{i=1}^{n}\left(I\left(Y_{i}<\xi\right)-\tau\right)$$
 Luego, por la monotonía del gradiente en funciones convexas se tiene,
 
-$$
-\begin{aligned}
+$$\begin{aligned}
 P\left\{\hat{\xi}_{\tau}>\xi\right\} & =P\left\{g_{n}(\xi)<0\right\} \\
 & =P\left\{\sum I\left(Y_{i}<\xi\right)<n \tau\right\} \\
 & =P\{B(n, F(\xi))<n \tau\},
-\end{aligned}
-$$
+\end{aligned}$$
 
 donde $B(n, p)$ denota una variable aleatoria binomial con parámetros $(n, p)$. Así, dejando que $m=\lceil n \tau\rceil$ denote el entero más pequeño $\geq n \tau$, podemos expresar la función de distribución $G(\xi) \equiv P\left\{\hat{\xi}_{\tau} \leq \xi\right\}$ de $\hat{\xi}(\tau)$ usando la función beta incompleta como
 
-$$
-\begin{aligned}
+$$\begin{aligned}
 G(\xi) & =\sum_{k=m}^{n}\binom{n}{k} F(\xi)^{k}(1-F(\xi))^{n-k} \\
 & =n\binom{n-1}{m-1} \int_{0}^{F(\xi)} t^{m-1}(1-t)^{n-m} d t
-\end{aligned}
-$$
+\end{aligned}$$
 
 Diferenciando, obtenemos la función de densidad para $\hat{\xi}(\tau)$
 
-$$
-g(\xi)=n\binom{n-1}{m-1} F(\xi)^{m-1}(1-F(\xi))^{n-m} f(\xi)
-$$
+$$g(\xi)=n\binom{n-1}{m-1} F(\xi)^{m-1}(1-F(\xi))^{n-m} f(\xi)$$
 
 Esta forma de la densidad puede deducirse directamente notando que el evento $\{x<$ $\left.Y_{(m)}<x+\delta\right\}$ requiere que $m-1$ observaciones estén por debajo de $x$, $n-m$ estén por encima de $x+\delta$ y una esté en el intervalo $(x, x+\delta)$. El número de formas en que puede ocurrir esta disposición es
 
-$$
-\frac{n!}{(m-1)!1!(n-m)!}=n\binom{n-1}{m-1}
-$$
+$$\frac{n!}{(m-1)!1!(n-m)!}=n\binom{n-1}{m-1}$$
 
 y cada disposición tiene la probabilidad $\left.F(\xi)^{m-1}(1-F(\xi))^{n-m}[F(\xi+\delta)-F(\xi))\right]$. Así,
 
-$$
-P\left\{x<Y_{(m)}<x+\delta\right\}=n\binom{n-1}{m-1} F(\xi)^{m-1}(1-F(\xi))^{n-m} f(\xi) \delta+o\left(\delta^{2}\right),
-$$
+$$P\left\{x<Y_{(m)}<x+\delta\right\}=n\binom{n-1}{m-1} F(\xi)^{m-1}(1-F(\xi))^{n-m} f(\xi) \delta+o\left(\delta^{2}\right),$$
 
 y obtenemos la función de densidad dividiendo ambos lados por $\delta$ y dejando que tienda a cero.\\
 Este enfoque también puede usarse para construir intervalos de confianza para $\xi_{\tau}$ de la forma
 
-$$
-P\left\{\hat{\xi}_{\tau_{1}}<\xi_{\tau}<\hat{\xi}_{\tau_{2}}\right\}=1-\alpha
-$$
+$$P\left\{\hat{\xi}_{\tau_{1}}<\xi_{\tau}<\hat{\xi}_{\tau_{2}}\right\}=1-\alpha$$
 
 donde $\tau_{1}$ y $\tau_{2}$ se eligen para satisfacer
 
-$$
-P\left\{n \tau_{1}<B(n, \tau)<n \tau_{2}\right\}=1-\alpha
-$$
+$$P\left\{n \tau_{1}<B(n, \tau)<n \tau_{2}\right\}=1-\alpha$$
 
 En el caso de $F$ continua, estos intervalos tienen la notable propiedad de ser libres de distribución, es decir, se mantienen independientemente de $F$. En el caso de $F$ discreta, se pueden construir límites libres de distribución estrechamente relacionados para $P\left\{\hat{\xi}_{\tau_{1}}<\xi_{\tau}<\hat{\xi}_{\tau_{2}}\right\}$ y $P\left\{\hat{\xi}_{\tau_{1}} \leq \xi_{\tau} \leq \hat{\xi}_{\tau_{2}}\right\}$.
 
@@ -565,21 +458,16 @@ La densidad de muestra finita del estimador de regresión cuantílica $\hat{\bet
 
 **Teorema de (Bassett y Koenker (1978)).**   Considere el modelo lineal
 
-$$
-Y_{i}=x_{i}^{\prime} \beta+u_{i} \quad i=1, \ldots, n,
-$$
+$$Y_{i}=x_{i}^{\prime} \beta+u_{i} \quad i=1, \ldots, n,$$
 
 con errores iid $\left\{u_{i}\right\}$ que tienen función de distribución común $F$ y densidad estrictamente positiva $f$ en $F^{-1}(\tau)$. Entonces la densidad de $\hat{\beta}(\tau)$ toma la forma,
 
-$$
-g(b)=\sum_{h \in \mathcal{H}} P\left\{\xi_{h}(b) \in \mathcal{C}\right\}|X(h)| \prod_{i \in h} f\left(x_{i}^{\prime}(b-\beta(\tau))+F^{-1}(\tau)\right) \tag{3.1.2}
-$$
+$$g(b)=\sum_{h \in \mathcal{H}} P\left\{\xi_{h}(b) \in \mathcal{C}\right\}|X(h)| \prod_{i \in h} f\left(x_{i}^{\prime}(b-\beta(\tau))+F^{-1}(\tau)\right) \tag{3.1.2}$$
 
 donde $\xi_{h}(b)=\sum_{i \in \bar{h}} \psi_{\tau}\left(y_{i}-x_{i} b\right) x_{i}^{\prime} X(h)^{-1}$ y $\mathcal{C}$ denota el cubo $[\tau-1, \tau]^{p}$.\\
 A continuación se da una demostración de este resultado. Bajo las condiciones de soluciones básicas se sabe que, $\hat{\beta}(\tau)=b(h) \equiv(X(h))^{-1} Y(h)$ si y solo si $\xi_{h}(b(h)) \in$ $\mathcal{C}$. Para cualquier $b \in \mathbb{R}^{p}$, sea $B(b, \delta)=b+[-\delta / 2, \delta / 2]^{p}$ el cubo centrado en $b$ con aristas de longitud $\delta$ y escribimos
 
-$$
-\begin{align*}
+$$\begin{align*}
 P\{\beta(\tau) \in B(b, \delta) & =\sum_{h \in \mathcal{H}} P\left\{b(h) \in B(b, \delta), \xi_{h}(b(h)) \in \mathcal{C}\right\}  \tag{3.1.3}\\
 & =\sum_{h \in \mathcal{H}} E I(b(h) \in B(b, \delta)) P\left\{\xi_{h}(b(h)) \in \mathcal{C} \mid Y(h)\right\}.
 \end{align*}$$
@@ -589,14 +477,11 @@ P\{\beta(\tau) \in B(b, \delta) & =\sum_{h \in \mathcal{H}} P\left\{b(h) \in B(b
 
 Ahora, dividimos ambos lados por Volumen $(B(b, \delta))=\delta^{p}$ y dejamos $\delta \rightarrow 0$ para expresarlo en forma de densidad. La probabilidad condicional tiende a $P\left\{\xi_{h}(b) \in \mathcal{C}\right\}$ que ya no depende de $Y(h)$. El otro factor tiende a la densidad conjunta del vector $X(h)^{-1} Y(h)$ que como
 
-$$
-f_{Y(h)}(y)=\prod_{i \in h} f\left(y_{i}-x_{i}^{\prime} \beta\right)
-$$
+$$f_{Y(h)}(y)=\prod_{i \in h} f\left(y_{i}-x_{i}^{\prime} \beta\right)$$
 
 puede escribirse como
 
-$$
-\begin{align*}
+$$\begin{align*}
 f_{(X(h))^{-1} Y(h)}(b) & =|X(h)| \prod_{i \in h} f\left((X(h) b)_{i}-x_{i}^{\prime} \beta(\tau)+F^{-1}(\tau)\right)  \tag{3.1.4}\\
 & =|X(h)| \prod_{i \in h} f\left(x_{i}^{\prime}(b-\beta(\tau))+F^{-1}(\tau)\right)
 \end{align*}$$
@@ -610,54 +495,41 @@ Desafortunadamente, desde un punto de vista práctico los $\binom{n}{p}$ sumando
 
 La visión de optimización de los cuantiles muestrales también permite un enfoque elemental de su teoría asintótica. Supongamos que $Y_{1}, \ldots, Y_{n}$ son independientes e idénticamente distribuidos (iid) de la distribución $F$ y para algún cuantil $\xi_{\tau}=F^{-1}(\tau)$ asumamos que $F$ tiene una densidad continua $f$ en $\xi_{\tau}$ con $f\left(\xi_{\tau}\right)>0$. La función objetivo del $\tau$-ésimo cuantil muestral
 
-$$
-\hat{\xi}_{\tau} \equiv \inf _{\xi}\left\{\xi \in \mathbb{R} \mid \sum \rho_{\tau}\left(Y_{i}-\xi\right)=\min !\right\}
-$$
+$$\hat{\xi}_{\tau} \equiv \inf _{\xi}\left\{\xi \in \mathbb{R} \mid \sum \rho_{\tau}\left(Y_{i}-\xi\right)=\min !\right\}$$
 
 como ya hemos notado, esta función objetivo es la suma de funciones convexas, por lo tanto es ella misma convexa. Consecuentemente su gradiente
 
-$$
-g_{n}(\xi)=n^{-1} \sum_{i=1}^{n}\left(I\left(Y_{i}<\xi\right)-\tau\right)
-$$
+$$g_{n}(\xi)=n^{-1} \sum_{i=1}^{n}\left(I\left(Y_{i}<\xi\right)-\tau\right)$$
 
 es monótono en $\xi$. Por supuesto, cuando $\xi$ iguala a uno de los $Y_{i}$ entonces este "gradiente" necesita la interpretación de subgradiente discutida anteriormente, pero esto no es crucial para el argumento que sigue. Por monotonía, $\hat{\xi}_{\tau}$ es mayor que $\xi$ si y solo si $g_{n}(\xi)<0$. Así que
 
-$$
-\begin{aligned}
+$$\begin{aligned}
 P\left\{\sqrt{n}\left(\hat{\xi}_{\tau}-\xi_{\tau}\right)>\delta\right\} & =P\left\{\left(\hat{\xi}_{\tau}\right)>\frac{\delta}{\sqrt{n}}+\xi_\tau\right\}
 \\&=P\left\{g_{n}\left(\xi_{\tau}+\delta / \sqrt{n}\right)<0\right\} \\
 & =P\left\{n^{-1} \sum\left(I\left(Y_{i}<\xi_{\tau}+\delta / \sqrt{n}\right)-\tau\right)<0\right\}
-\end{aligned}
-$$
+\end{aligned}$$
 
 Así, hemos reducido el comportamiento de $\hat{\xi}_{\tau}$ a un problema de teorema del límite central DeMoivre-Laplace en el que tenemos un arreglo de variables aleatorias Bernoulli. Los sumandos toman los valores $(1-\tau)$ y $-\tau$ con probabilidades $F\left(\xi_{\tau}+\delta / \sqrt{n}\right)$ y $1-F\left(\xi_{\tau}+\delta / \sqrt{n}\right)$. Dado que
 
-$$
-E [g_{n}\left(\xi_{\tau}+\delta / \sqrt{n}\right)]=\left(F\left(\xi_{\tau}+\delta / \sqrt{n}\right)-\tau\right) \rightarrow f\left(\xi_{\tau}\right) \delta / \sqrt{n}
-$$
+$$E [g_{n}\left(\xi_{\tau}+\delta / \sqrt{n}\right)]=\left(F\left(\xi_{\tau}+\delta / \sqrt{n}\right)-\tau\right) \rightarrow f\left(\xi_{\tau}\right) \delta / \sqrt{n}$$
 
 y
 
-$$
-\begin{aligned}
+$$\begin{aligned}
 &V\left(g_{n}\left(\xi_{\tau}+\delta / \sqrt{n}\right)\right)=\\ &F\left(\xi_{\tau}+\delta / \sqrt{n}\right)\left(1-F\left(\xi_{\tau}+\delta / \sqrt{n}\right)\right) / n \rightarrow \tau(1-\tau) / n .
 \end{aligned}$$
 
 podemos establecer $\omega^{2}=\tau(1-\tau) / f^{2}\left(\xi_{\tau}\right)$ y escribir
 
-$$
-\begin{aligned}
+$$\begin{aligned}
 P\left\{\sqrt{n}\left(\hat{\xi}_{\tau}-\xi_{\tau}\right)>\delta\right\} & =P\left\{\frac{g_{n}\left(\xi_{\tau}+\delta / \sqrt{n}\right)-f\left(\xi_{\tau}\right) \delta / \sqrt{n}}{\sqrt{\tau(1-\tau) / n}}<-\omega^{-1} \delta\right\} \\
 & \rightarrow 1-\Phi\left(\omega^{-1} \delta\right)
-\end{aligned}
-$$
+\end{aligned}$$
 
 y por lo tanto
 
 
-$$
-\sqrt{n}\left(\hat{\xi}_{\tau}-\xi_{\tau}\right) \leadsto \mathcal{N}\left(0, \omega^{2}\right) \tag{3.2.1}
-$$
+$$\sqrt{n}\left(\hat{\xi}_{\tau}-\xi_{\tau}\right) \leadsto \mathcal{N}\left(0, \omega^{2}\right) \tag{3.2.1}$$
 
 
 El efecto $\tau(1-\tau)$ tiende a hacer $\hat{\xi}_{\tau}$ más preciso en las colas, pero esto típicamente sería dominado por el efecto del término de densidad que tiende a hacer $\hat{\xi}_{\tau}$ menos preciso en regiones de baja densidad.
@@ -665,24 +537,18 @@ El efecto $\tau(1-\tau)$ tiende a hacer $\hat{\xi}_{\tau}$ más preciso en las c
 Extendiendo el argumento anterior para considerar la forma límite de la distribución conjunta de varios cuantiles, sea $\hat{\zeta}_{n}=\left(\hat{\xi}_{\tau_{1}}, \ldots, \hat{\xi}_{\tau_{m}}\right)$ con $\zeta_{n}=\left(\xi_{\tau_{1}}, \ldots, \xi_{\tau_{m}}\right)$ y obtenemos
 
 
-$$
-\sqrt{n}\left(\hat{\zeta}_{n}-\zeta\right) \leadsto \mathcal{N}(0, \Omega) \tag{3.2.2}
-$$
+$$\sqrt{n}\left(\hat{\zeta}_{n}-\zeta\right) \leadsto \mathcal{N}(0, \Omega) \tag{3.2.2}$$
 
 
 donde $\Omega=\left(\omega_{i j}\right)=\left(\tau_{i} \wedge \tau_{j}-\tau_{i} \tau_{j}\right) /\left(f\left(F^{-1}\left(\tau_{i}\right) f\left(F^{-1}\left(\tau_{j}\right)\right)\right.\right.$. 
 Estos resultados para los cuantiles muestrales ordinarios en el modelo de una muestra se generalizan elegantemente al modelo de regresión lineal clásico
 
-$$
-y_{i}=x_{i}^{\prime} \beta+u_{i}
-$$
+$$y_{i}=x_{i}^{\prime} \beta+u_{i}$$
 
 con errores iid $\left\{u_{i}\right\}$. Supongamos que los $\left\{u_{i}\right\}$ tienen función de distribución común $F$ con densidad asociada $f$, con $f\left(F^{-1}\left(\tau_{i}\right)\right)>0$ para $i=1, \ldots, m$, y $n^{-1} \sum x_{i} x_{i}^{\prime} \equiv Q_{n}$ converge a una matriz definida positiva $Q_{0}$. Entonces la distribución asintótica conjunta de los estimadores de regresión cuantílica $m p$-variantes $\hat{\zeta}_{n}=\left(\hat{\beta}_{n}\left(\tau_{1}\right)^{\prime}, \ldots, \hat{\beta}_{n}\left(\tau_{m}\right)^{\prime}\right)^{\prime}$ toma la forma
 
 
-$$
-\sqrt{n}\left(\hat{\zeta}_{n}-\zeta\right)=\left(\sqrt{n}\left(\hat{\beta}_{n}\left(\tau_{j}\right)-\beta\left(\tau_{j}\right)\right)\right)_{j=1}^{m}=\mathcal{N}\left(0, \Omega \otimes Q_{0}^{-1}\right) . \tag{3.2.3}
-$$
+$$\sqrt{n}\left(\hat{\zeta}_{n}-\zeta\right)=\left(\sqrt{n}\left(\hat{\beta}_{n}\left(\tau_{j}\right)-\beta\left(\tau_{j}\right)\right)\right)_{j=1}^{m}=\mathcal{N}\left(0, \Omega \otimes Q_{0}^{-1}\right) . \tag{3.2.3}$$
 
 
 En el escenario de regresión con errores iid, la forma de los $\beta\left(\tau_{j}\right)$ es particularmente simple como hemos visto. Los planos cuantiles condicionales de $y \mid x$ son paralelos, así que suponiendo que la primera coordenada de $\beta$ corresponde al parámetro "intercepto", tenemos $\beta(\tau)=\beta+\xi_{\tau} e_{1}$ donde $\xi_{\tau}=F^{-1}(\tau)$ y $e_{1}$ es el primer vector unitario base de $\mathbb{R}^{p}$. Dado que $\Omega$ toma la misma forma que en el escenario de una muestra, muchos de los resultados clásicos sobre L-estadísticas pueden llevarse directamente a la regresión con errores iid usando este resultado.
@@ -770,17 +636,13 @@ Es posible extende esta misma idea a la regresión cuantílica, sin embargo, es 
 
 
 Sea $$Y$$ una v.a., entonces:
-$$
-  \mu = \arg\min_c \mathbb{E}(Y - c)^2,
+$$\mu = \arg\min_c \mathbb{E}(Y - c)^2,
   \quad
-  q_{0.5} = \arg\min_c \mathbb{E}|Y - c|.
-$$
+  q_{0.5} = \arg\min_c \mathbb{E}|Y - c|.$$
 En general,
-$$
-  q_{\theta} = \arg\min_c \mathbb{E}[\rho_{\theta}(Y - c)],
+$$q_{\theta} = \arg\min_c \mathbb{E}[\rho_{\theta}(Y - c)],
   \quad
-  \rho_{\theta}(y) = [\theta - I(y<0)]\,|y|.
-$$
+  \rho_{\theta}(y) = [\theta - I(y<0)]\,|y|.$$
 
 
 ---
@@ -945,17 +807,15 @@ interact(plot_quantile_plotly, tau=FloatSlider(value=0.5, min=0.05, max=0.95, st
 
 ### Métodos de validación en regresión cuantíl
 
-A diferencia de la regresión lineal ordinaria, donde se evalúa el ajuste del modelo mediante la suma de cuadrados de los residuos y el coeficiente de determinación $$ R^2 $$, la regresión cuantíl utiliza criterios diferentes, ya que no modela la media condicional sino los cuantiles condicionales de la variable respuesta. Por ello, los métodos de validación deben adaptarse a la función de pérdida que optimiza este tipo de modelos: la pérdida de cuantíl o función de “check”.
+A diferencia de la regresión lineal ordinaria, donde se evalúa el ajuste del modelo mediante la suma de cuadrados de los residuos y el coeficiente de determinación $R^2$, la regresión cuantíl utiliza criterios diferentes, ya que no modela la media condicional sino los cuantiles condicionales de la variable respuesta. Por ello, los métodos de validación deben adaptarse a la función de pérdida que optimiza este tipo de modelos: la pérdida de cuantíl o función de “check”.
 
-Una primera forma de validación consiste en verificar que los residuos estén distribuidos conforme al cuantil modelado. Por ejemplo, si se estima el cuantil $$ \tau = 0.25 $$, se espera que aproximadamente el 25% de los residuos $$ e_i = y_i - \hat{Q}_\tau(x_i) $$ sean negativos. Esta proporción sirve como un chequeo rápido de la coherencia del modelo, y puede interpretarse como una forma empírica de validar si la regresión cuantíl está ubicando correctamente la frontera de probabilidad deseada.
+Una primera forma de validación consiste en verificar que los residuos estén distribuidos conforme al cuantil modelado. Por ejemplo, si se estima el cuantil $\tau = 0.25$, se espera que aproximadamente el 25% de los residuos $e_i = y_i - \hat{Q}_\tau(x_i)$ sean negativos. Esta proporción sirve como un chequeo rápido de la coherencia del modelo, y puede interpretarse como una forma empírica de validar si la regresión cuantíl está ubicando correctamente la frontera de probabilidad deseada.
 
-Un segundo criterio más formal es el pseudo $$ R^1(\tau) $$, propuesto por Koenker y Machado (1999). Este coeficiente se define como una analogía al $$ R^2 $$ clásico, pero adaptado a la pérdida asimétrica de la regresión cuantíl:
+Un segundo criterio más formal es el pseudo $R^1(\tau)$, propuesto por Koenker y Machado (1999). Este coeficiente se define como una analogía al $R^2$ clásico, pero adaptado a la pérdida asimétrica de la regresión cuantíl:
 
-$$
-R^1(\tau) = 1 - \frac{\sum_{i=1}^n \rho_\tau(y_i - x_i^\top \hat{\beta}_\tau)}{\sum_{i=1}^n \rho_\tau(y_i - \tilde{y})}
-$$
+$$R^1(\tau) = 1 - \frac{\sum_{i=1}^n \rho_\tau(y_i - x_i^\top \hat{\beta}_\tau)}{\sum_{i=1}^n \rho_\tau(y_i - \tilde{y})}$$
 
-donde $$ \rho_\tau(u) = u(\tau - \mathbf{1}_{\{u < 0\}}) $$ es la función de pérdida de cuantíl, y $$ \tilde{y} $$ es el cuantil empírico $$ \tau $$ de la muestra, es decir, el valor que se obtendría al predecir siempre el mismo cuantíl sin usar ninguna covariable.
+donde $\rho_\tau(u) = u(\tau - \mathbf{1}_{\{u < 0\}})$ es la función de pérdida de cuantíl, y $\tilde{y}$ es el cuantil empírico $\tau$ de la muestra, es decir, el valor que se obtendría al predecir siempre el mismo cuantíl sin usar ninguna covariable.
 
 Este índice compara el desempeño del modelo completo con covariables contra un modelo base sin explicativas. Si el valor es cercano a 1, el modelo está explicando bien el cuantil condicional; si es cercano a 0, las covariables apenas aportan; y si es negativo, el modelo con variables explicativas resulta peor que simplemente usar el cuantil empírico de la muestra.
 
@@ -964,37 +824,33 @@ En conjunto, estas herramientas permiten validar modelos de regresión cuantíl 
 
 ## Residuos
 
-$$
-  e_i^{(\tau)} = y_i - x_i^\top \hat\beta_\tau.
-$$
-Aproximadamente $$\tau\cdot100\%$$ residuos negativos.
+$$e_i^{(\tau)} = y_i - x_i^\top \hat\beta_\tau.$$
+Aproximadamente $\tau\cdot100\%$ residuos negativos.
 
 ## Pseudo $$R^1(\tau)$$
 
 
 
-$$
-  R^1(\tau)
+$$R^1(\tau)
   = 1 - 
     \frac{\sum_i \rho_\tau(y_i - x_i^\top \hat\beta_\tau)}
-         {\sum_i \rho_\tau(y_i - \tilde y)},
-$$
+         {\sum_i \rho_\tau(y_i - \tilde y)},$$
 donde $$\tilde y$$ es el cuantil empírico de $$y$$ sin covariables.
 
 ## Diagnóstico gráfico
 
 ### Gráfico Q-Q empírico para validación de residuos
 
-Otra herramienta útil para diagnosticar la calidad del ajuste en regresión cuantíl es el gráfico Q-Q (cuantil-cuantil) empírico de los residuos. A diferencia del gráfico Q-Q tradicional en regresión lineal, que compara los residuos contra una distribución normal teórica, en regresión cuantíl se utiliza un enfoque **no paramétrico y empírico**: se comparan los residuos ordenados contra los cuantiles teóricos esperados de una distribución simétrica para el nivel de $$ \tau $$ considerado.
+Otra herramienta útil para diagnosticar la calidad del ajuste en regresión cuantíl es el gráfico Q-Q (cuantil-cuantil) empírico de los residuos. A diferencia del gráfico Q-Q tradicional en regresión lineal, que compara los residuos contra una distribución normal teórica, en regresión cuantíl se utiliza un enfoque **no paramétrico y empírico**: se comparan los residuos ordenados contra los cuantiles teóricos esperados de una distribución simétrica para el nivel de $\tau$ considerado.
 
-Recordemos que si el modelo está bien especificado, los residuos $$ e_i = y_i - x_i^\top \hat{\beta}_\tau $$ deberían estar distribuidos de forma tal que aproximadamente un $$ \tau \cdot 100\% $$ de ellos sean negativos, y el resto positivos. Esta distribución esperada no es necesariamente normal, pero sí debe mantener una simetría alrededor del cero para ciertos cuantiles centrales (por ejemplo, la mediana). Por eso, en lugar de usar una referencia gaussiana, se puede comparar la distribución de los residuos observados con la de una distribución simétrica simulada o simplemente contrastar su comportamiento con lo esperado bajo el supuesto de independencia e identidad del modelo.
+Recordemos que si el modelo está bien especificado, los residuos $e_i = y_i - x_i^\top \hat{\beta}_\tau$ deberían estar distribuidos de forma tal que aproximadamente un $\tau \cdot 100\%$ de ellos sean negativos, y el resto positivos. Esta distribución esperada no es necesariamente normal, pero sí debe mantener una simetría alrededor del cero para ciertos cuantiles centrales (por ejemplo, la mediana). Por eso, en lugar de usar una referencia gaussiana, se puede comparar la distribución de los residuos observados con la de una distribución simétrica simulada o simplemente contrastar su comportamiento con lo esperado bajo el supuesto de independencia e identidad del modelo.
 
 En la práctica, el gráfico Q-Q empírico se construye de la siguiente manera:
 1. Se ordenan los residuos estimados de menor a mayor.
-2. Se calculan los cuantiles teóricos esperados para $$ n $$ observaciones suponiendo una distribución simétrica alrededor de cero.
-3. Se grafican los cuantiles teóricos en el eje $$ x $$ y los residuos observados en el eje $$ y $$.
+2. Se calculan los cuantiles teóricos esperados para $n$ observaciones suponiendo una distribución simétrica alrededor de cero.
+3. Se grafican los cuantiles teóricos en el eje $x$ y los residuos observados en el eje $y$.
 
-Un buen ajuste se refleja en una nube de puntos alineada con la diagonal $$ y = x $$. Desviaciones sistemáticas indican asimetrías, colas más pesadas o estructuras no capturadas por el modelo. Este tipo de diagnóstico visual es especialmente útil cuando se combinan regresiones cuantílicas para distintos valores de $$ \tau $$, ya que permite comparar cómo cambia la forma de los residuos a lo largo de la distribución condicional.
+Un buen ajuste se refleja en una nube de puntos alineada con la diagonal $y = x$. Desviaciones sistemáticas indican asimetrías, colas más pesadas o estructuras no capturadas por el modelo. Este tipo de diagnóstico visual es especialmente útil cuando se combinan regresiones cuantílicas para distintos valores de $\tau$, ya que permite comparar cómo cambia la forma de los residuos a lo largo de la distribución condicional.
 
 
 ### ¿Cómo se construye un Q-Q plot en regresión cuantíl?
@@ -1010,14 +866,10 @@ En un Q-Q plot tradicional (como en regresión lineal), transformamos los datos 
 ### Enfoque 1: Q-Q contra cuantiles simulados bajo el modelo
 
 1. Se calculan los residuos:  
-   $$
-   e_i = y_i - x_i^\top \hat{\beta}_\tau
-   $$
+   $$e_i = y_i - x_i^\top \hat{\beta}_\tau$$
 
 2. Se ordenan de menor a mayor:  
-   $$
-   e_{(1)} < e_{(2)} < \cdots < e_{(n)}
-   $$
+   $$e_{(1)} < e_{(2)} < \cdots < e_{(n)}$$
 
 3. Se calculan cuantiles teóricos esperados bajo la hipótesis de un modelo bien ajustado:
    - No hay una distribución explícita, pero se puede construir una referencia simétrica por remuestreo (bootstrap) o suponer una estructura empírica.
@@ -1032,13 +884,11 @@ Este enfoque busca detectar si los residuos muestran asimetrías o estructuras n
 
 Otra estrategia consiste en analizar los **residuos transformados** como si siguieran una distribución uniforme si el modelo está bien especificado:
 
-1. Calcular los residuos $$ e_i $$.
+1. Calcular los residuos $e_i$.
 2. Asignarles sus posiciones empíricas (ranks normalizados):  
-   $$
-   u_i = \frac{\text{rango}(e_i)}{n+1}
-   $$
+   $$u_i = \frac{\text{rango}(e_i)}{n+1}$$
 
-3. Compararlos con los cuantiles de una distribución uniforme $$ U(0,1) $$.
+3. Compararlos con los cuantiles de una distribución uniforme $U(0,1)$.
 
 Este enfoque es más informal pero útil para validar si la dispersión y el ordenamiento de los residuos parecen razonables.
 
