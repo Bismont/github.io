@@ -1,3 +1,8 @@
+---
+layout: default
+title: Página Principal
+---
+
 # Regresión Cuantíl
 
 **Autores:** Alfredo Bistrain, Jesús García y Rodolfo Lucario  
