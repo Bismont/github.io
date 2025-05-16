@@ -227,10 +227,9 @@ $$
 cuyos valores deben decidirse de manera óptima, se denominan variables de decisión.
 
 En un programa lineal general, el objetivo es encontrar un vector $\mathbf{x}^* \in \mathbb{R}_{+}^n$ que minimice o maximice, el valor de una función lineal llamada función objetivo, dada entre todos los vectores $\mathbf{x} \in \mathbb{R}_{+}^n$ que satisfacen un sistema dado de ecuaciones e inecuaciones lineales llamado sistema de restricciones. El papel de la linealidad es, por tanto, doble:
-\begin{itemize}
-  \item la función objetivo, es decir, la calidad del plan, se mide mediante una función lineal de las cantidades consideradas;
-  \item los planes factibles están restringidos por restricciones lineales (inequaciones).
-\end{itemize}
+- La función objetivo, es decir, la calidad del plan, se mide mediante una función lineal de las cantidades consideradas;
+- los planes factibles están restringidos por restricciones lineales (inequaciones).
+
 La linealidad de algunos modelos puede justificarse sobre la base de las propiedades típicas del problema. Sin embargo, algunos problemas no lineales pueden ser linealizados mediante un uso adecuado de transformaciones matemáticas. Este es el caso del problema de regresión cuantílica (QR, por sus siglas en inglés). La representación (o a veces la aproximación) de un problema mediante una formulación de programación lineal garantiza que existan procedimientos eficientes para calcular soluciones.
 
 Para recapitular, un problema típico de programación lineal satisface las siguientes condiciones:
