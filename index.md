@@ -591,11 +591,11 @@ $$
 donde $\xi_{h}(b)=\sum_{i \in \bar{h}} \psi_{\tau}\left(y_{i}-x_{i} b\right) x_{i}^{\prime} X(h)^{-1}$ y $\mathcal{C}$ denota el cubo $[\tau-1, \tau]^{p}$.\\
 A continuación se da una demostración de este resultado. Bajo las condiciones de soluciones básicas se sabe que, $\hat{\beta}(\tau)=b(h) \equiv(X(h))^{-1} Y(h)$ si y solo si $\xi_{h}(b(h)) \in$ $\mathcal{C}$. Para cualquier $b \in \mathbb{R}^{p}$, sea $B(b, \delta)=b+[-\delta / 2, \delta / 2]^{p}$ el cubo centrado en $b$ con aristas de longitud $\delta$ y escribimos
 
-
+$$
 \begin{align*}
 P\{\beta(\tau) \in B(b, \delta) & =\sum_{h \in \mathcal{H}} P\left\{b(h) \in B(b, \delta), \xi_{h}(b(h)) \in \mathcal{C}\right\}  \tag{3.1.3}\\
 & =\sum_{h \in \mathcal{H}} E I(b(h) \in B(b, \delta)) P\left\{\xi_{h}(b(h)) \in \mathcal{C} \mid Y(h)\right\}.
-\end{align*}
+\end{align*}$$
 
 
  La probabilidad condicional anterior se define a partir de la distribución de $\xi_{h}(b(h))$ que es una variable aleatoria discreta (tomando $2^{n-p}$ valores para cada $h \in \mathcal{H}$ ). Cuando $\delta \rightarrow 0$, esta probabilidad condicional tiende a $P\left\{\xi_{h}(b) \in \mathcal{C}\right\}$; esta probabilidad es independiente de $Y(h)$.
@@ -608,11 +608,11 @@ $$
 
 puede escribirse como
 
-
+$$
 \begin{align*}
 f_{(X(h))^{-1} Y(h)}(b) & =|X(h)| \prod_{i \in h} f\left((X(h) b)_{i}-x_{i}^{\prime} \beta(\tau)+F^{-1}(\tau)\right)  \tag{3.1.4}\\
 & =|X(h)| \prod_{i \in h} f\left(x_{i}^{\prime}(b-\beta(\tau))+F^{-1}(\tau)\right)
-\end{align*}
+\end{align*}$$
 
 
 Nótese que los $h$ para los cuales $X(h)$ es singular no contribuyen a la densidad. El resultado ahora sigue al reensamblar las piezas.
@@ -693,9 +693,9 @@ $$
 con errores iid $\left\{u_{i}\right\}$. Supongamos que los $\left\{u_{i}\right\}$ tienen función de distribución común $F$ con densidad asociada $f$, con $f\left(F^{-1}\left(\tau_{i}\right)\right)>0$ para $i=1, \ldots, m$, y $n^{-1} \sum x_{i} x_{i}^{\prime} \equiv Q_{n}$ converge a una matriz definida positiva $Q_{0}$. Entonces la distribución asintótica conjunta de los estimadores de regresión cuantílica $m p$-variantes $\hat{\zeta}_{n}=\left(\hat{\beta}_{n}\left(\tau_{1}\right)^{\prime}, \ldots, \hat{\beta}_{n}\left(\tau_{m}\right)^{\prime}\right)^{\prime}$ toma la forma
 
 
-\begin{equation*}
+$$
 \sqrt{n}\left(\hat{\zeta}_{n}-\zeta\right)=\left(\sqrt{n}\left(\hat{\beta}_{n}\left(\tau_{j}\right)-\beta\left(\tau_{j}\right)\right)\right)_{j=1}^{m}=\mathcal{N}\left(0, \Omega \otimes Q_{0}^{-1}\right) . \tag{3.2.3}
-\end{equation*}
+$$
 
 
 En el escenario de regresión con errores iid, la forma de los $\beta\left(\tau_{j}\right)$ es particularmente simple como hemos visto. Los planos cuantiles condicionales de $y \mid x$ son paralelos, así que suponiendo que la primera coordenada de $\beta$ corresponde al parámetro "intercepto", tenemos $\beta(\tau)=\beta+\xi_{\tau} e_{1}$ donde $\xi_{\tau}=F^{-1}(\tau)$ y $e_{1}$ es el primer vector unitario base de $\mathbb{R}^{p}$. Dado que $\Omega$ toma la misma forma que en el escenario de una muestra, muchos de los resultados clásicos sobre L-estadísticas pueden llevarse directamente a la regresión con errores iid usando este resultado.
