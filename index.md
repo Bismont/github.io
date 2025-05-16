@@ -85,7 +85,7 @@ jupyter: true
   $$  
     Q_Y(\tau \mid X = x) = \inf\{y : \mathbb{P}(Y \le y \mid X = x) \ge \tau\}  
   $$
-- Permite obtener la forma completa de la distribución condicional de \(Y\).  
+- Permite obtener la forma completa de la distribución condicional de $Y$.  
 - Al variar  
   $$  
     \tau \in (0,1)  
@@ -114,11 +114,11 @@ jupyter: true
 
 ## Definición de cuantiles
 
-- Cuantil de orden \(\tau\) de la v.a. \(Y\):  
+- Cuantil de orden $\tau$ de la v.a. $Y$:  
   $$  
     Q_Y(\tau) = \inf\{y : F_Y(y) \ge \tau\}  
   $$
-- Para \(\tau = 0.5\), se obtiene la mediana.  
+- Para $\tau = 0.5$, se obtiene la mediana.  
 - Se pueden estimar otros percentiles: 10%, 25%, 90%, etc.
 
 ## El cuantil como un problema de minimización
@@ -748,11 +748,11 @@ Una aplicación directa del teorema anterior y que además es una fortaleza de l
 También es posible hacer este análisis usando la función de máxima verosimilitud que nos llevaría a obtener los mismos estimadores que en la minimización del error cuadrático medio si la distirbución de los errores es Normal. En caso de que los erroes no sean normales, no se obtienen los mismos estimadores que minimizan el error cuadrático medio. Así, la virtud de la regresión cuantílica es que esta no asume una función de distirbución para los errores.
 
 ## Función de Influencia de Hampel
-Ahora analizaremos el por qué bajo el criterio de la función de influencia de Hampel, la mediana es más robusta que la media. La función de influencia, introducida por Hampel, ofrece una descripción concisa de cómo un estimador $\hat{\theta}$ evaluado en una distribución $F$ se ve afectado al ``contaminar'' $F$. Formalmente, podemos ver a  $\hat{\theta}$ como una función de $F$ y escribirlo como $\hat{\theta}(F)$, y podemos considerar la contaminación de $F$ reemplazando una pequeña cantidad de masa $\varepsilon$ de $F$ por una equivalente masa concentrada en \(y\), permitiéndonos escribir la función de distribución contaminada como
+Ahora analizaremos el por qué bajo el criterio de la función de influencia de Hampel, la mediana es más robusta que la media. La función de influencia, introducida por Hampel, ofrece una descripción concisa de cómo un estimador $\hat{\theta}$ evaluado en una distribución $F$ se ve afectado al ``contaminar'' $F$. Formalmente, podemos ver a  $\hat{\theta}$ como una función de $F$ y escribirlo como $\hat{\theta}(F)$, y podemos considerar la contaminación de $F$ reemplazando una pequeña cantidad de masa $\varepsilon$ de $F$ por una equivalente masa concentrada en $y$, permitiéndonos escribir la función de distribución contaminada como
 
 $$F_{\varepsilon}(x)=\varepsilon\delta_{y}(x)+(1-\varepsilon)F(x),$$
 
-donde \(\delta_{y}\) denota la función de distribución que asigna masa 1 al punto \(y\). Expresamos la función de influencia de \(\hat{\theta}\) en \(F\) como
+donde $\delta_{y}$ denota la función de distribución que asigna masa 1 al punto $y$. Expresamos la función de influencia de $\hat{\theta}$ en $F$ como
 
 $$IF_{\hat{\theta}}(y,F)=\lim_{\varepsilon\to 0}\frac{\hat{\theta}(F_{ \varepsilon})-\hat{\theta}(F)}{\varepsilon}.$$
 Calculando la función de influencia de Hampel para la mediana se tiene que
@@ -772,17 +772,17 @@ y es posible demostrar que
 $$IF_{\hat{\theta}}(y,F)=\text{sgn}(y-\bar{\theta}(F))/f(F^{-1}(1/2)),$$
 De lo anterior sacamos las siguiente conclusiones 
 
-- En el caso de la media, la influencia de contaminar \(F\) en \(y\) es  proporcional a \(y\), lo que implica que una pequeña contaminación, \textit{por mínima que sea}, en un punto \(y\) suficientemente lejano a \(\theta(F)\) puede alejar arbitrariamente la media de su valor inicial en \(F\). Esto lo podemos ver dado que para una $\varepsilon$ pequeña se tiene la aproximación 
+- En el caso de la media, la influencia de contaminar $F$ en $y$ es  proporcional a $y$, lo que implica que una pequeña contaminación, \textit{por mínima que sea}, en un punto $y$ suficientemente lejano a $\theta(F)$ puede alejar arbitrariamente la media de su valor inicial en $F$. Esto lo podemos ver dado que para una $\varepsilon$ pequeña se tiene la aproximación 
 $$\hat{\theta}(F_{\varepsilon}) - \hat{\theta}(F) \approx \epsilon (y-\hat{\theta}(F))$$
 
-- En contraste, la influencia de la contaminación en \(y\) sobre la mediana está \textit{acotada} por la constante \(1/f(F^{-1}(1/2))\), esto último dado que,  
+- En contraste, la influencia de la contaminación en $y$ sobre la mediana está \textit{acotada} por la constante $1/f(F^{-1}(1/2))$, esto último dado que,  
 $$-\frac{\varepsilon}{f(F^{-1}(\frac{1}{2}))}\leq \hat{\theta}(F_{\varepsilon}) - \hat{\theta}(F) \leq \frac{\varepsilon}{f(F^{-1}(\frac{1}{2}))}$$
 aproximadamente.
 
 Es posible extende esta misma idea a la regresión cuantílica, sin embargo, es posible demostrar que la función de información para la beta estimada en la regresión cuantílica no es sencible a lo extremos dela variable de respuesta, sin embargo, sí lo es para las covariables. 
 
 
-Sea \(Y\) una v.a., entonces:
+Sea $Y$ una v.a., entonces:
 $$
   \mu = \arg\min_c \mathbb{E}(Y - c)^2,
   \quad
@@ -803,11 +803,11 @@ $$
 ## Interpretación de pendientes
 
 - OLS: pendiente promedio.  
-- Cuantílica: pendiente por \(\tau\).
+- Cuantílica: pendiente por $\tau$.
 
 ## Visualización progresiva
 
-Curvas cuantílicas para \(\tau = 0.1, 0.25, 0.5, 0.75, 0.9\).
+Curvas cuantílicas para $\tau = 0.1, 0.25, 0.5, 0.75, 0.9$.
 
 ```{code-cell} ipython3
 # Simular datos
@@ -934,7 +934,7 @@ interact(plot_quantile_plotly, tau=FloatSlider(value=0.5, min=0.05, max=0.95, st
 
 ## Coeficientes por cuantíl
 
-| Cuantil \(\tau\) | \(\hat\beta_\tau\) (MXN/año) |
+| Cuantil $\tau$ | $\hat\beta_\tau$ (MXN/año) |
 |:---------------:|:----------------------------:|
 | 0.05            | 2 000                        |
 | 0.50            | 5 300                        |
@@ -958,17 +958,17 @@ interact(plot_quantile_plotly, tau=FloatSlider(value=0.5, min=0.05, max=0.95, st
 
 ### Métodos de validación en regresión cuantíl
 
-A diferencia de la regresión lineal ordinaria, donde se evalúa el ajuste del modelo mediante la suma de cuadrados de los residuos y el coeficiente de determinación \( R^2 \), la regresión cuantíl utiliza criterios diferentes, ya que no modela la media condicional sino los cuantiles condicionales de la variable respuesta. Por ello, los métodos de validación deben adaptarse a la función de pérdida que optimiza este tipo de modelos: la pérdida de cuantíl o función de “check”.
+A diferencia de la regresión lineal ordinaria, donde se evalúa el ajuste del modelo mediante la suma de cuadrados de los residuos y el coeficiente de determinación $ R^2 $, la regresión cuantíl utiliza criterios diferentes, ya que no modela la media condicional sino los cuantiles condicionales de la variable respuesta. Por ello, los métodos de validación deben adaptarse a la función de pérdida que optimiza este tipo de modelos: la pérdida de cuantíl o función de “check”.
 
-Una primera forma de validación consiste en verificar que los residuos estén distribuidos conforme al cuantil modelado. Por ejemplo, si se estima el cuantil \( \tau = 0.25 \), se espera que aproximadamente el 25% de los residuos \( e_i = y_i - \hat{Q}_\tau(x_i) \) sean negativos. Esta proporción sirve como un chequeo rápido de la coherencia del modelo, y puede interpretarse como una forma empírica de validar si la regresión cuantíl está ubicando correctamente la frontera de probabilidad deseada.
+Una primera forma de validación consiste en verificar que los residuos estén distribuidos conforme al cuantil modelado. Por ejemplo, si se estima el cuantil $ \tau = 0.25 $, se espera que aproximadamente el 25% de los residuos $ e_i = y_i - \hat{Q}_\tau(x_i) $ sean negativos. Esta proporción sirve como un chequeo rápido de la coherencia del modelo, y puede interpretarse como una forma empírica de validar si la regresión cuantíl está ubicando correctamente la frontera de probabilidad deseada.
 
-Un segundo criterio más formal es el pseudo \( R^1(\tau) \), propuesto por Koenker y Machado (1999). Este coeficiente se define como una analogía al \( R^2 \) clásico, pero adaptado a la pérdida asimétrica de la regresión cuantíl:
+Un segundo criterio más formal es el pseudo $ R^1(\tau) $, propuesto por Koenker y Machado (1999). Este coeficiente se define como una analogía al $ R^2 $ clásico, pero adaptado a la pérdida asimétrica de la regresión cuantíl:
 
 $$
 R^1(\tau) = 1 - \frac{\sum_{i=1}^n \rho_\tau(y_i - x_i^\top \hat{\beta}_\tau)}{\sum_{i=1}^n \rho_\tau(y_i - \tilde{y})}
 $$
 
-donde \( \rho_\tau(u) = u(\tau - \mathbf{1}_{\{u < 0\}}) \) es la función de pérdida de cuantíl, y \( \tilde{y} \) es el cuantil empírico \( \tau \) de la muestra, es decir, el valor que se obtendría al predecir siempre el mismo cuantíl sin usar ninguna covariable.
+donde $ \rho_\tau(u) = u(\tau - \mathbf{1}_{\{u < 0\}}) $ es la función de pérdida de cuantíl, y $ \tilde{y} $ es el cuantil empírico $ \tau $ de la muestra, es decir, el valor que se obtendría al predecir siempre el mismo cuantíl sin usar ninguna covariable.
 
 Este índice compara el desempeño del modelo completo con covariables contra un modelo base sin explicativas. Si el valor es cercano a 1, el modelo está explicando bien el cuantil condicional; si es cercano a 0, las covariables apenas aportan; y si es negativo, el modelo con variables explicativas resulta peor que simplemente usar el cuantil empírico de la muestra.
 
@@ -980,9 +980,9 @@ En conjunto, estas herramientas permiten validar modelos de regresión cuantíl 
 $$
   e_i^{(\tau)} = y_i - x_i^\top \hat\beta_\tau.
 $$
-Aproximadamente \(\tau\cdot100\%\) residuos negativos.
+Aproximadamente $\tau\cdot100\%$ residuos negativos.
 
-## Pseudo \(R^1(\tau)\)
+## Pseudo $R^1(\tau)$
 
 
 
@@ -992,22 +992,22 @@ $$
     \frac{\sum_i \rho_\tau(y_i - x_i^\top \hat\beta_\tau)}
          {\sum_i \rho_\tau(y_i - \tilde y)},
 $$
-donde \(\tilde y\) es el cuantil empírico de \(y\) sin covariables.
+donde $\tilde y$ es el cuantil empírico de $y$ sin covariables.
 
 ## Diagnóstico gráfico
 
 ### Gráfico Q-Q empírico para validación de residuos
 
-Otra herramienta útil para diagnosticar la calidad del ajuste en regresión cuantíl es el gráfico Q-Q (cuantil-cuantil) empírico de los residuos. A diferencia del gráfico Q-Q tradicional en regresión lineal, que compara los residuos contra una distribución normal teórica, en regresión cuantíl se utiliza un enfoque **no paramétrico y empírico**: se comparan los residuos ordenados contra los cuantiles teóricos esperados de una distribución simétrica para el nivel de \( \tau \) considerado.
+Otra herramienta útil para diagnosticar la calidad del ajuste en regresión cuantíl es el gráfico Q-Q (cuantil-cuantil) empírico de los residuos. A diferencia del gráfico Q-Q tradicional en regresión lineal, que compara los residuos contra una distribución normal teórica, en regresión cuantíl se utiliza un enfoque **no paramétrico y empírico**: se comparan los residuos ordenados contra los cuantiles teóricos esperados de una distribución simétrica para el nivel de $ \tau $ considerado.
 
-Recordemos que si el modelo está bien especificado, los residuos \( e_i = y_i - x_i^\top \hat{\beta}_\tau \) deberían estar distribuidos de forma tal que aproximadamente un \( \tau \cdot 100\% \) de ellos sean negativos, y el resto positivos. Esta distribución esperada no es necesariamente normal, pero sí debe mantener una simetría alrededor del cero para ciertos cuantiles centrales (por ejemplo, la mediana). Por eso, en lugar de usar una referencia gaussiana, se puede comparar la distribución de los residuos observados con la de una distribución simétrica simulada o simplemente contrastar su comportamiento con lo esperado bajo el supuesto de independencia e identidad del modelo.
+Recordemos que si el modelo está bien especificado, los residuos $ e_i = y_i - x_i^\top \hat{\beta}_\tau $ deberían estar distribuidos de forma tal que aproximadamente un $ \tau \cdot 100\% $ de ellos sean negativos, y el resto positivos. Esta distribución esperada no es necesariamente normal, pero sí debe mantener una simetría alrededor del cero para ciertos cuantiles centrales (por ejemplo, la mediana). Por eso, en lugar de usar una referencia gaussiana, se puede comparar la distribución de los residuos observados con la de una distribución simétrica simulada o simplemente contrastar su comportamiento con lo esperado bajo el supuesto de independencia e identidad del modelo.
 
 En la práctica, el gráfico Q-Q empírico se construye de la siguiente manera:
 1. Se ordenan los residuos estimados de menor a mayor.
-2. Se calculan los cuantiles teóricos esperados para \( n \) observaciones suponiendo una distribución simétrica alrededor de cero.
-3. Se grafican los cuantiles teóricos en el eje \( x \) y los residuos observados en el eje \( y \).
+2. Se calculan los cuantiles teóricos esperados para $ n $ observaciones suponiendo una distribución simétrica alrededor de cero.
+3. Se grafican los cuantiles teóricos en el eje $ x $ y los residuos observados en el eje $ y $.
 
-Un buen ajuste se refleja en una nube de puntos alineada con la diagonal \( y = x \). Desviaciones sistemáticas indican asimetrías, colas más pesadas o estructuras no capturadas por el modelo. Este tipo de diagnóstico visual es especialmente útil cuando se combinan regresiones cuantílicas para distintos valores de \( \tau \), ya que permite comparar cómo cambia la forma de los residuos a lo largo de la distribución condicional.
+Un buen ajuste se refleja en una nube de puntos alineada con la diagonal $ y = x $. Desviaciones sistemáticas indican asimetrías, colas más pesadas o estructuras no capturadas por el modelo. Este tipo de diagnóstico visual es especialmente útil cuando se combinan regresiones cuantílicas para distintos valores de $ \tau $, ya que permite comparar cómo cambia la forma de los residuos a lo largo de la distribución condicional.
 
 
 ### ¿Cómo se construye un Q-Q plot en regresión cuantíl?
@@ -1045,13 +1045,13 @@ Este enfoque busca detectar si los residuos muestran asimetrías o estructuras n
 
 Otra estrategia consiste en analizar los **residuos transformados** como si siguieran una distribución uniforme si el modelo está bien especificado:
 
-1. Calcular los residuos \( e_i \).
+1. Calcular los residuos $ e_i $.
 2. Asignarles sus posiciones empíricas (ranks normalizados):  
    $$
    u_i = \frac{\text{rango}(e_i)}{n+1}
    $$
 
-3. Compararlos con los cuantiles de una distribución uniforme \( U(0,1) \).
+3. Compararlos con los cuantiles de una distribución uniforme $ U(0,1) $.
 
 Este enfoque es más informal pero útil para validar si la dispersión y el ordenamiento de los residuos parecen razonables.
 
