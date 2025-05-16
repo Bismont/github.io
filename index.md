@@ -35,10 +35,7 @@ jupyter: true
 
   **Artículo fundacional:** *Regression Quantiles*, Econometrica, 1978.
 
-- Generalización de la regresión de la mediana a cualquier cuantil  
-  $$  
-    \tau \in (0,1)  
-  $$
+- Generalización de la regresión de la mediana a cualquier cuantil  $\tau \in (0,1).$
 - Utiliza una función de pérdida asimétrica y se resuelve con **programación lineal**.
 
 ---
