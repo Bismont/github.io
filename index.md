@@ -83,19 +83,10 @@ jupyter: true
     Q_Y(\tau \mid X = x) = \inf\{y : \mathbb{P}(Y \le y \mid X = x) \ge \tau\}  
   $$
 - Permite obtener la forma completa de la distribución condicional de $$Y$$.  
-- Al variar  
-  $$  
-    \tau \in (0,1)  
-  $$  
-  se construyen curvas cuantílicas, por ejemplo:
-  - Mediana condicional:  
-    $$  
-      \tau = 0.5  
-    $$
+- Al variar $\tau \in (0,1)$ se construyen curvas cuantílicas. Por ejemplo:
+  - Mediana condicional: $\tau = 0.5$
   - Colas:  
-    $$  
-      \tau = 0.1, \; 0.9  
-    $$
+    $\tau = 0.1, \; 0.9$
 - Modela:
   - Cambios en la variabilidad  
   - Comportamiento desigual en subgrupos  
@@ -216,7 +207,7 @@ aquí, $y_i$ son las observaciones de $Y_i$. El valor de $c$ que minimiza esta f
 
 ## Supuesto de linealidad 
 
-Podemos extender la idea del cuantil como un problema de minimización a la regresión cuantílica. Dado que el cuantil \(\tau\)-ésimo (\(Q_{Y}(\tau)\)) minimiza la esperanza de la función de pérdida antes mencionada, el cuantil $\tau$-ésimo condicional a $X$, que denotaremos por $Q_{Y}(\tau|X)$,  minimiza la esperanza condicional respecto a $X$ de la función de pérdida antes mencionada.\
+Podemos extender la idea del cuantil como un problema de minimización a la regresión cuantílica. Dado que el cuantil $\tau$-ésimo ($ Q_{Y}(\tau) $ ) minimiza la esperanza de la función de pérdida antes mencionada, el cuantil $\tau$-ésimo condicional a $X$, que denotaremos por $Q_{Y}(\tau|X)$,  minimiza la esperanza condicional respecto a $X$ de la función de pérdida antes mencionada.\
 Aún más, si asumimos 
 $$Q_{Y}(\tau|x) = x^{T}\beta(\tau)$$
 es posible estimar a $\beta(\tau )$ mediante el problema de minimización 
