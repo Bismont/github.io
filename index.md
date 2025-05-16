@@ -82,7 +82,7 @@ jupyter: true
   $$  
     Q_Y(\tau \mid X = x) = \inf\{y : \mathbb{P}(Y \le y \mid X = x) \ge \tau\}  
   $$
-- Permite obtener la forma completa de la distribución condicional de $$Y$$.  
+- Permite obtener la forma completa de la distribución condicional de $Y$.  
 - Al variar $\tau \in (0,1)$ se construyen curvas cuantílicas. Por ejemplo:
   - Mediana condicional: $\tau = 0.5$
   - Colas:  
@@ -601,11 +601,11 @@ Una aplicación directa del teorema anterior y que además es una fortaleza de l
 También es posible hacer este análisis usando la función de máxima verosimilitud que nos llevaría a obtener los mismos estimadores que en la minimización del error cuadrático medio si la distirbución de los errores es Normal. En caso de que los erroes no sean normales, no se obtienen los mismos estimadores que minimizan el error cuadrático medio. Así, la virtud de la regresión cuantílica es que esta no asume una función de distirbución para los errores.
 
 ## Función de Influencia de Hampel
-Ahora analizaremos el por qué bajo el criterio de la función de influencia de Hampel, la mediana es más robusta que la media. La función de influencia, introducida por Hampel, ofrece una descripción concisa de cómo un estimador $\hat{\theta}$ evaluado en una distribución $F$ se ve afectado al ``contaminar'' $F$. Formalmente, podemos ver a  $\hat{\theta}$ como una función de $F$ y escribirlo como $\hat{\theta}(F)$, y podemos considerar la contaminación de $F$ reemplazando una pequeña cantidad de masa $\varepsilon$ de $F$ por una equivalente masa concentrada en $$y$$, permitiéndonos escribir la función de distribución contaminada como
+Ahora analizaremos el por qué bajo el criterio de la función de influencia de Hampel, la mediana es más robusta que la media. La función de influencia, introducida por Hampel, ofrece una descripción concisa de cómo un estimador $\hat{\theta}$ evaluado en una distribución $F$ se ve afectado al ``contaminar'' $F$. Formalmente, podemos ver a  $\hat{\theta}$ como una función de $F$ y escribirlo como $\hat{\theta}(F)$, y podemos considerar la contaminación de $F$ reemplazando una pequeña cantidad de masa $\varepsilon$ de $F$ por una equivalente masa concentrada en $y$, permitiéndonos escribir la función de distribución contaminada como
 
 $$F_{\varepsilon}(x)=\varepsilon\delta_{y}(x)+(1-\varepsilon)F(x),$$
 
-donde $$\delta_{y}$$ denota la función de distribución que asigna masa 1 al punto $$y$$. Expresamos la función de influencia de $$\hat{\theta}$$ en $$F$$ como
+donde $\delta_{y}$ denota la función de distribución que asigna masa 1 al punto $y$. Expresamos la función de influencia de $\hat{\theta}$ en $F$ como
 
 $$IF_{\hat{\theta}}(y,F)=\lim_{\varepsilon\to 0}\frac{\hat{\theta}(F_{ \varepsilon})-\hat{\theta}(F)}{\varepsilon}.$$
 Calculando la función de influencia de Hampel para la mediana se tiene que
@@ -625,17 +625,17 @@ y es posible demostrar que
 $$IF_{\hat{\theta}}(y,F)=\text{sgn}(y-\bar{\theta}(F))/f(F^{-1}(1/2)),$$
 De lo anterior sacamos las siguiente conclusiones 
 
-- En el caso de la media, la influencia de contaminar $$F$$ en $$y$$ es  proporcional a $$y$$, lo que implica que una pequeña contaminación, \textit{por mínima que sea}, en un punto $$y$$ suficientemente lejano a $$\theta(F)$$ puede alejar arbitrariamente la media de su valor inicial en $$F$$. Esto lo podemos ver dado que para una $\varepsilon$ pequeña se tiene la aproximación 
+- En el caso de la media, la influencia de contaminar $F$ en $y$ es  proporcional a $y$, lo que implica que una pequeña contaminación, \textit{por mínima que sea}, en un punto $y$ suficientemente lejano a $\theta(F)$ puede alejar arbitrariamente la media de su valor inicial en $F$. Esto lo podemos ver dado que para una $\varepsilon$ pequeña se tiene la aproximación 
 $$\hat{\theta}(F_{\varepsilon}) - \hat{\theta}(F) \approx \epsilon (y-\hat{\theta}(F))$$
 
-- En contraste, la influencia de la contaminación en $$y$$ sobre la mediana está \textit{acotada} por la constante $$1/f(F^{-1}(1/2))$$, esto último dado que,  
+- En contraste, la influencia de la contaminación en $y$ sobre la mediana está \textit{acotada} por la constante $$1/f(F^{-1}(1/2))$$, esto último dado que,  
 $$-\frac{\varepsilon}{f(F^{-1}(\frac{1}{2}))}\leq \hat{\theta}(F_{\varepsilon}) - \hat{\theta}(F) \leq \frac{\varepsilon}{f(F^{-1}(\frac{1}{2}))}$$
 aproximadamente.
 
 Es posible extende esta misma idea a la regresión cuantílica, sin embargo, es posible demostrar que la función de información para la beta estimada en la regresión cuantílica no es sencible a lo extremos dela variable de respuesta, sin embargo, sí lo es para las covariables. 
 
 
-Sea $$Y$$ una v.a., entonces:
+Sea $Y$ una v.a., entonces:
 $$\mu = \arg\min_c \mathbb{E}(Y - c)^2,
   \quad
   q_{0.5} = \arg\min_c \mathbb{E}|Y - c|.$$
@@ -652,7 +652,7 @@ $$q_{\theta} = \arg\min_c \mathbb{E}[\rho_{\theta}(Y - c)],
 ## Interpretación de pendientes
 
 - OLS: pendiente promedio.  
-- Cuantílica: pendiente por $$\tau$$.
+- Cuantílica: pendiente por $\tau$.
 
 ## Visualización progresiva
 
@@ -827,7 +827,7 @@ En conjunto, estas herramientas permiten validar modelos de regresión cuantíl 
 $$e_i^{(\tau)} = y_i - x_i^\top \hat\beta_\tau.$$
 Aproximadamente $\tau\cdot100\%$ residuos negativos.
 
-## Pseudo $$R^1(\tau)$$
+## Pseudo $R^1(\tau)$
 
 
 
@@ -835,7 +835,7 @@ $$R^1(\tau)
   = 1 - 
     \frac{\sum_i \rho_\tau(y_i - x_i^\top \hat\beta_\tau)}
          {\sum_i \rho_\tau(y_i - \tilde y)},$$
-donde $$\tilde y$$ es el cuantil empírico de $$y$$ sin covariables.
+donde $\tilde y$ es el cuantil empírico de $y$ sin covariables.
 
 ## Diagnóstico gráfico
 
