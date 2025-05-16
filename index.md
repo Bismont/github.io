@@ -964,9 +964,9 @@ Una primera forma de validación consiste en verificar que los residuos estén d
 
 Un segundo criterio más formal es el pseudo \( R^1(\tau) \), propuesto por Koenker y Machado (1999). Este coeficiente se define como una analogía al \( R^2 \) clásico, pero adaptado a la pérdida asimétrica de la regresión cuantíl:
 
-\[
+$$
 R^1(\tau) = 1 - \frac{\sum_{i=1}^n \rho_\tau(y_i - x_i^\top \hat{\beta}_\tau)}{\sum_{i=1}^n \rho_\tau(y_i - \tilde{y})}
-\]
+$$
 
 donde \( \rho_\tau(u) = u(\tau - \mathbf{1}_{\{u < 0\}}) \) es la función de pérdida de cuantíl, y \( \tilde{y} \) es el cuantil empírico \( \tau \) de la muestra, es decir, el valor que se obtendría al predecir siempre el mismo cuantíl sin usar ninguna covariable.
 
@@ -1023,14 +1023,14 @@ En un Q-Q plot tradicional (como en regresión lineal), transformamos los datos 
 ### Enfoque 1: Q-Q contra cuantiles simulados bajo el modelo
 
 1. Se calculan los residuos:  
-   \[
+   $$
    e_i = y_i - x_i^\top \hat{\beta}_\tau
-   \]
+   $$
 
 2. Se ordenan de menor a mayor:  
-   \[
+   $$
    e_{(1)} < e_{(2)} < \cdots < e_{(n)}
-   \]
+   $$
 
 3. Se calculan cuantiles teóricos esperados bajo la hipótesis de un modelo bien ajustado:
    - No hay una distribución explícita, pero se puede construir una referencia simétrica por remuestreo (bootstrap) o suponer una estructura empírica.
@@ -1047,9 +1047,9 @@ Otra estrategia consiste en analizar los **residuos transformados** como si sigu
 
 1. Calcular los residuos \( e_i \).
 2. Asignarles sus posiciones empíricas (ranks normalizados):  
-   \[
+   $$
    u_i = \frac{\text{rango}(e_i)}{n+1}
-   \]
+   $$
 
 3. Compararlos con los cuantiles de una distribución uniforme \( U(0,1) \).
 
