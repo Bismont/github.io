@@ -192,7 +192,7 @@ Las variables:
 $$x_i \geq 0 \quad i=1, \ldots, n,$$
 cuyos valores deben decidirse de manera óptima, se denominan variables de decisión.
 
-En un programa lineal general, el objetivo es encontrar un vector \( \mathbf{x}^* \in \mathbb{R}^n_{+}\) que minimice o maximice, el valor de una función lineal llamada función objetivo, dada entre todos los vectores \(\mathbf{x} \in \mathbb{R}_{+}^n\) que satisfacen un sistema dado de ecuaciones e inecuaciones lineales llamado sistema de restricciones. El papel de la linealidad es, por tanto, doble:
+En un programa lineal general, el objetivo es encontrar un vector \(\mathbf{x}^* \in \mathbb{R}^n_{+}\) que minimice o maximice, el valor de una función lineal llamada función objetivo, dada entre todos los vectores \(\mathbf{x} \in \mathbb{R}_{+}^n\) que satisfacen un sistema dado de ecuaciones e inecuaciones lineales llamado sistema de restricciones. El papel de la linealidad es, por tanto, doble:
 - La función objetivo, es decir, la calidad del plan, se mide mediante una función lineal de las cantidades consideradas;
 - los planes factibles están restringidos por restricciones lineales (inequaciones).
 
