@@ -1,6 +1,6 @@
 markdown: kramdown
 
 kramdown:
-  input: GFM
+  # input: GFM
   math_engine: mathjax
   gfm_quirks: math
