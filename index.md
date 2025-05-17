@@ -94,7 +94,7 @@ jupyter: true
 
 ## Comparación visual
 
-![cuantile_vs_ols](cuantile_vs_ols.png)
+![Regresión tradicional contra regresión cuantil](./images/cuantile_vs_ols.png)
 
 ---
 
@@ -710,27 +710,8 @@ import statsmodels.api as sm
 import plotly.graph_objects as go
 from ipywidgets import interact, FloatSlider
 
-# --- Carga de datos (reemplaza por tus archivos) ---
-df_ingresos = pd.read_csv('ingresos.csv')
-df_hogar = pd.read_csv('concentradohogar.csv')
+df.to_csv('consolidado_ENIGH_2022_ingresos_CDMX.csv', index=False)
 
-# --- Limpieza y unión ---
-df_hogar = df_hogar[['folioviv', 'educa_jefe']]
-df_hogar['folioviv'] = df_hogar['folioviv'].astype(str).str.zfill(10)
-df_ingresos['folioviv'] = df_ingresos['folioviv'].astype(str).str.zfill(10)
-df_ingresos = df_ingresos[['folioviv', 'entidad', 'ing_tri']]
-
-df_ingresos = (
-    df_ingresos[df_ingresos['entidad'] == 9]
-    .groupby(['folioviv'], as_index=False)['ing_tri'].sum()
-)
-
-df = df_ingresos.merge(df_hogar, on='folioviv', how='left')
-df = df.dropna()
-df = df[(df['ing_tri'] > 0) & (df['educa_jefe'] >= 0)]
-df = df.rename(columns={'ing_tri': 'ingreso_trimestral', 'educa_jefe': 'educacion_jefe'})
-
-# --- Visualización interactiva con Plotly ---
 def plot_quantile_plotly(tau=0.5):
     X = sm.add_constant(df['educacion_jefe'])
     y = df['ingreso_trimestral']
