@@ -192,7 +192,7 @@ Las variables:
 $$x_i \geq 0 \quad i=1, \ldots, n,$$
 cuyos valores deben decidirse de manera óptima, se denominan variables de decisión.
 
-En un programa lineal general, el objetivo es encontrar un vector $\mathbf{x}^* \in \mathbb{R}_{+}^n$ que minimice o maximice, el valor de una función lineal llamada función objetivo, dada entre todos los vectores $\mathbf{x} \in \mathbb{R}_{+}^n$ que satisfacen un sistema dado de ecuaciones e inecuaciones lineales llamado sistema de restricciones. El papel de la linealidad es, por tanto, doble:
+En un programa lineal general, el objetivo es encontrar un vector \( \mathbf{x}^* \in \mathbb{R}^n_{+}\) que minimice o maximice, el valor de una función lineal llamada función objetivo, dada entre todos los vectores \(\mathbf{x} \in \mathbb{R}_{+}^n\) que satisfacen un sistema dado de ecuaciones e inecuaciones lineales llamado sistema de restricciones. El papel de la linealidad es, por tanto, doble:
 - La función objetivo, es decir, la calidad del plan, se mide mediante una función lineal de las cantidades consideradas;
 - los planes factibles están restringidos por restricciones lineales (inequaciones).
 
@@ -246,14 +246,16 @@ Finalmente, vale la pena recordar que, desde un punto de vista geométrico, una 
 Al combinar todas las desigualdades, el conjunto de vectores que satisfacen las restricciones, conjunto factible, es entonces la intersección de todos los semiespacios involucrados, los $n$ semiespacios impuestos por la no negatividad de las variables de decisión y los $m$ semiespacios impuestos por las $m$ restricciones que regulan el proceso.
 
 Consideremos un problema de programación lineal con $n$ incógnitas (variables de decisión) y $m$ restricciones. La formulación matricial del problema es la siguiente (forma estándar),
+
 $$\begin{array}{ll}
 \operatorname{minimize} & \mathbf{c x} \\
 \text { subject to } & \mathbf{A x} \leq \mathbf{b} \\
 & \mathbf{x} \geq \mathbf{0} .
 \end{array}$$
+
 La forma estándar plantea las desigualdades como de tipo menor o igual y requiere la no negatividad de las variables de decisión.  
-    - El vector $\mathbf{c}_{[n]}$ contiene los costos asociados a las variables de decisión.  
-    - La matriz $\mathbf{A}_{[m \times n]}$ y el vector $\mathbf{b}_{[m]}$ permiten considerar las $m$ restricciones.  
+    - El vector \(\mathbf{c}_{[n]}\) contiene los costos asociados a las variables de decisión.  
+    - La matriz \(\mathbf{A}_{[m \times n]}\) y el vector \(\mathbf{b}_{[m]}\) permiten considerar las $m$ restricciones.  
     -  Una solución $\mathbf{x}_{[n]}$ se denomina factible si satisface todas las restricciones.  
     - Se denomina óptima, y se denota por $\mathbf{x}^*$, si alcanza el mínimo y es factible.  
 
